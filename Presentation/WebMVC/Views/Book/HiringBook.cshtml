@@ -1,0 +1,31 @@
+@model WebMVC.Models.ViewModels.HiringBookViewModel
+@{
+    ViewData["Title"] = "Kitap Kirala";
+}
+<h2>Kitap Kirala</h2>
+
+<form asp-action="HiringBook" method="post">
+    <div class="form-group">
+        <label asp-for="RentName">Kiracı Adı</label>
+        <input asp-for="RentName" class="form-control" />
+        <span asp-validation-for="RentName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReturnDateTime">Kiralama Bitiş Tarihi</label>
+        <input asp-for="ReturnDateTime" class="form-control" type="date" />
+        <span asp-validation-for="ReturnDateTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BookId">Kitap</label>
+        <select asp-for="BookId" class="form-control">
+            <option value="">Kitap Seçin</option>
+            @foreach (var book in ViewBag.Books) 
+            {
+                <option value="@book.Id">@book.Name</option>
+            }
+        </select>
+        <span asp-validation-for="BookId" class="text-danger"></span>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary">Kirala</button>
+</form>

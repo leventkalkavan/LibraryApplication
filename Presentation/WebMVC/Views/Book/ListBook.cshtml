@@ -1,0 +1,49 @@
+@using Domain.Entities
+@model IEnumerable<Domain.Entities.Book>
+@{
+    ViewData["Title"] = "Kitap Listele";
+}
+<h2>Kitap Listesi</h2>
+<br />
+<div class="text-center">
+    @foreach (var book in Model.OrderBy(x=>x.Name))
+    {
+        <div class="card" style="width: 20rem; height: 300px; display: inline-block; margin: 10px; overflow: hidden;">
+            <br/>
+            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 40%; height: 55%;">
+            <div class="card-body">
+                <h6 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.Name</h6>
+                <h6 class="card-subtitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.AuthorName</h6>
+                @if (!book.Status)
+                {
+                    @if (book.Order != null)
+                    {
+                        <a>
+                            Ödünç Alan Kişi: @book.Order.Name<br/>
+                            Geri İade Tarihi: @book.Order.ReturnDateTime.ToString("dd.MM.yyyy")
+                        </a>
+                    }
+                }
+                <a>
+                    @if (book.Status)
+                    {
+                        <span style="color: green;">Kütüphanede</span>
+                    }
+                    else
+                    {
+                        <span style="color: red;">Kiralanmış</span>
+                    }
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <p>Kütüphanede kitap mevcut değil</p>
+}
+
+<br />
+<a asp-action="AddBook" class="btn btn-primary">Kitap Ekle</a>
+<a asp-action="HiringBook" class="btn btn-primary">Ödünç Al</a>
