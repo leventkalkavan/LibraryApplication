@@ -8,12 +8,12 @@
 <div class="text-center">
     @foreach (var book in Model.OrderBy(x=>x.Name))
     {
-        <div class="card" style="width: 18rem; height: 275px; display: inline-block; margin: 5px; overflow: hidden;">
+        <div class="card" style="width: 18rem; height: 250px; display: inline-block; margin: 5px; overflow: hidden;">
             <br/>
-            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 30%; height: 45%;">
+            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 30%; height: 41%;">
             <div class="card-body">
-                <h6 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.Name</h6>
-                <h6 class="card-subtitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.AuthorName</h6>
+                <h5 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.Name</h5>
+                <h6 class="card-subtitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration:none">@book.AuthorName</h6>
                 <br/>
                 <a>
                     @if (book.Status)

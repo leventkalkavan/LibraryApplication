@@ -6,11 +6,11 @@
 <h2 class="text-center">Kitap Listesi</h2>
 <br />
 <div class="text-center">
-    @foreach (var book in Model.OrderBy(x=>x.Name))
+    @foreach (var book in Model.OrderBy(x => x.Name))
     {
         <div class="card" style="width: 21rem; height: 300px; display: inline-block; margin: 10px; overflow: hidden;">
             <br/>
-            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 35%; height: 50%;">
+            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 41%; height: 54%;">
             <div class="card-body">
                 <h6 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.Name</h6>
                 <h6 class="card-subtitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.AuthorName</h6>

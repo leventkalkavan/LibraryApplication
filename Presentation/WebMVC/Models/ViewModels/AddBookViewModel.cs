@@ -1,16 +1,19 @@
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebMVC.Models.ViewModels;
-
-public class AddBookViewModel
+namespace WebMVC.Models.ViewModels
 {
-    [Required(ErrorMessage = "Kitap ismi belirtilmelidir.")]
-    public string BookName { get; set; }
-    
-    [Required(ErrorMessage = "Yazar ismi belirtilmelidir.")]
-    public string AuthorName { get; set; }
+    public class AddBookViewModel
+    {
+        [Required(ErrorMessage = "Kitap ismi belirtilmelidir.")]
+        public string BookName { get; set; }
+        
+        [Required(ErrorMessage = "Yazar ismi belirtilmelidir.")]
+        public string AuthorName { get; set; }
 
-    [Required(ErrorMessage = "Kitap görsel url'i belirtilmelidir.")]
-    public string BookPhotoUrl { get; set; }
-    public bool Status { get; set; }
+        [Required(ErrorMessage = "Kitap görseli yüklenmelidir.")]
+        public IFormFile BookPhotoFile { get; set; }
+        
+        public bool Status { get; set; }
+    }
 }

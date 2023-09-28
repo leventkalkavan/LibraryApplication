@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using Domain.Entities.Common;
 using Microsoft.AspNetCore.Http;
 
@@ -10,4 +12,7 @@ public class Book: BaseEntity
     public string BookPhotoUrl { get; set; }
     public Order Order { get; set; }
     public bool Status { get; set; }
+
+    [NotMapped]
+    public IFormFile BookPhotoFile { get; set; }
 }

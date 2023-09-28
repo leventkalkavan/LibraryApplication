@@ -45,16 +45,30 @@ namespace WebMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model); 
+                return View(model);
             }
 
             var book = new Book
             {
                 Name = model.BookName,
                 AuthorName = model.AuthorName,
-                BookPhotoUrl = model.BookPhotoUrl,
                 Status = true
             };
+
+            if (model.BookPhotoFile != null && model.BookPhotoFile.Length > 0)
+            {
+                var imagePath = "wwwroot/images/"; // Dosyanın kaydedileceği dizin
+                var uniqueFileName = Guid.NewGuid() + "_" + model.BookPhotoFile.FileName;
+                var filePath = Path.Combine(imagePath, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.BookPhotoFile.CopyToAsync(stream);
+                }
+
+                book.BookPhotoUrl = "/images/" + uniqueFileName; // Resmin URL'sini kaydedin
+            }
+
             await _bookWriteRepository.AddAsync(book);
             await _bookWriteRepository.SaveAsync();
             _logger.LogInformation($"BookController - AddBook action executed, '{book.Name}' added.");
