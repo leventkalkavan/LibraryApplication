@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebMVC.Models.ViewModels
 {
-    public class AddBookViewModel
+    public class AddBookFormViewModel
     {
         [Required(ErrorMessage = "Kitap ismi belirtilmelidir.")]
         public string BookName { get; set; }

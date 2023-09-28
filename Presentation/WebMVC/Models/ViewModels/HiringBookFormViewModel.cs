@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebMVC.Models.ViewModels;
 
-public class HiringBookViewModel
+public class HiringBookFormViewModel
 {
     [Required(ErrorMessage = "Kiralayan kişi isim belirtilmelidir.")]
-    public string RentName { get; set; }
+    public string CustomerName { get; set; }
 
     [Required(ErrorMessage = "Geri verilecek tarih belirtilmelidir.")]
     [DataType(DataType.Date)]

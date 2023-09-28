@@ -10,10 +10,13 @@ public class Configuration
         {
             ConfigurationManager configurationManager = new();
             configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(),
-                "/Users/leventkalkavan/Desktop/Sanction Scanner Library Application/Presentation/WebMVC"));
+                
+                // Projenin adresini kopyalıyoruz
+                "/../../Presentation/WebMVC"));
             configurationManager.AddJsonFile("appsettings.json");
-
-            return configurationManager.GetConnectionString("Mssql");
+            
+            // appsettings.json dosyasından ConnectionStrings bölümünü okuyarak bağlantı dizesini alıyoruz
+            return configurationManager.GetConnectionString("SqlConnection");
         }
     }
 }
