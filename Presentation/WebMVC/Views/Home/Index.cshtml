@@ -3,17 +3,18 @@
 @{
     ViewData["Title"] = "Ana Sayfa";
 }
-<h2 class="text-center">Kütüphanedeki Kitaplar</h2>
+<h2 class="text-center">Kütüphanemizdeki Kitaplar</h2>
 <br />
 <div class="text-center">
     @foreach (var book in Model.OrderBy(x=>x.Name))
     {
-        <div class="card" style="width: 20rem; height: 300px; display: inline-block; margin: 10px; overflow: hidden;">
+        <div class="card" style="width: 18rem; height: 275px; display: inline-block; margin: 5px; overflow: hidden;">
             <br/>
-            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 40%; height: 55%;">
+            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 30%; height: 45%;">
             <div class="card-body">
                 <h6 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.Name</h6>
                 <h6 class="card-subtitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.AuthorName</h6>
+                <br/>
                 <a>
                     @if (book.Status)
                     {
@@ -21,7 +22,7 @@
                     }
                     else
                     {
-                        <span style="color: red;">Kiralanmış</span>
+                        <span style="color: red;">Dışarıda</span>
                     }
                 </a>
             </div>
@@ -33,6 +34,5 @@
 {
     <p>Kütüphanede kitap mevcut değil</p>
 }
-
 <br />
 <a href="/Book/ListBook" class="btn btn-primary">Kitap İşlemlerine Git</a>

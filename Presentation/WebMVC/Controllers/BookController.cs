@@ -16,17 +16,20 @@ namespace WebMVC.Controllers
         private readonly IBookReadRepository _bookReadRepository;
         private readonly IBookWriteRepository _bookWriteRepository;
         private readonly IOrderWriteRepository _orderWriteRepository;
-        public BookController(IBookReadRepository bookReadRepository, IBookWriteRepository bookWriteRepository, IOrderWriteRepository orderWriteRepository)
+        private readonly ILogger<BookController> _logger;
+        public BookController(IBookReadRepository bookReadRepository, IBookWriteRepository bookWriteRepository, IOrderWriteRepository orderWriteRepository, ILogger<BookController> logger)
         {
             _bookReadRepository = bookReadRepository;
             _bookWriteRepository = bookWriteRepository;
             _orderWriteRepository = orderWriteRepository;
+            _logger = logger;
         }
         
         [HttpGet]
         public IActionResult ListBook()
         {
             var books = _bookReadRepository.GetAll().Include(b => b.Order).ToList();
+            _logger.LogInformation("BookController - ListBook action executed, books are listed.");
             return View(books);
         }
 
@@ -54,7 +57,7 @@ namespace WebMVC.Controllers
             };
             await _bookWriteRepository.AddAsync(book);
             await _bookWriteRepository.SaveAsync();
-
+            _logger.LogInformation($"BookController - AddBook action executed, '{book.Name}' added.");
             return RedirectToAction("ListBook");
         }
 
@@ -75,7 +78,13 @@ namespace WebMVC.Controllers
             {
                 return View();
             }
-            
+            if (model.ReturnDateTime.Date < DateTime.Today)
+            {
+                ModelState.AddModelError("ReturnDateTime", "İade tarihi geçmiş tarih olamaz.");
+                _logger.LogInformation("Return date cannot be in the past.");
+                return View(model);
+            }
+    
             var book = await _bookReadRepository.GetByIdAsync(model.BookId);
 
             book.Status = false; 
@@ -91,9 +100,10 @@ namespace WebMVC.Controllers
 
             await _orderWriteRepository.AddAsync(order);
             await _orderWriteRepository.SaveAsync();
-            
+            _logger.LogInformation($"BookController - HiringBook action executed, '{order.Name}' borrowed the book '{order.Book.Name}' ");
             return RedirectToAction("ListBook");
         }
+
 
     }
 }

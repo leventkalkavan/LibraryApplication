@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Kitap Listele";
 }
-<h2>Kitap Listesi</h2>
+<h2 class="text-center">Kitap Listesi</h2>
 <br />
 <div class="text-center">
     @foreach (var book in Model.OrderBy(x=>x.Name))
     {
-        <div class="card" style="width: 20rem; height: 300px; display: inline-block; margin: 10px; overflow: hidden;">
+        <div class="card" style="width: 21rem; height: 300px; display: inline-block; margin: 10px; overflow: hidden;">
             <br/>
-            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 40%; height: 55%;">
+            <img src="@book.BookPhotoUrl" class="card-img-top mx-auto d-block" alt="@book.Name" style="width: 35%; height: 50%;">
             <div class="card-body">
                 <h6 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.Name</h6>
                 <h6 class="card-subtitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@book.AuthorName</h6>
@@ -31,7 +31,7 @@
                     }
                     else
                     {
-                        <span style="color: red;">Kiralanmış</span>
+                        <span style="color: red;">Dışarıda</span>
                     }
                 </a>
             </div>
@@ -46,4 +46,4 @@
 
 <br />
 <a asp-action="AddBook" class="btn btn-primary">Kitap Ekle</a>
-<a asp-action="HiringBook" class="btn btn-primary">Ödünç Al</a>
+<a asp-action="HiringBook" class="btn btn-primary">Kitap Ödünç Al</a>

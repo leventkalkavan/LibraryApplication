@@ -16,13 +16,12 @@ public class HomeController : Controller
         _logger = logger;
         _bookReadRepository = bookReadRepository;
     }
-
     public IActionResult Index()
     {
         var books = _bookReadRepository.GetAll();
+        _logger.LogInformation("HomeController - Index action executed.");
         return View(books);
     }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
