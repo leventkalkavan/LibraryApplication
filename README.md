@@ -38,7 +38,7 @@ Kitap Ödünç Al sayfası, kullanıcıların kütüphanede bulunan kitapları �
 
 Veritabanını oluşturmak için aşağıdaki adımları takip edebilirsiniz:
 
-1. `Persistence` klasörünün içinde bulunan `Persistence.csproj` dosyasının dizininde bir terminal açın.
+1. `Infrastructure` klasörünün içinde bulunan `Persistence.csproj` dosyasının dizininde bir terminal açın.
 
 2. Aşağıdaki komutları sırayla çalıştırarak veritabanını oluşturun:
 
